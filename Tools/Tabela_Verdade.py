@@ -1,8 +1,8 @@
 class cls_Tabela_Verdade:
-    def __init__(self,list_cat):
+    def __init__(self,dir_name,list_cat,file_name):
         self.list_cat = list_cat
-        self.file_name = 'tabela verdade.csv'
-        self.dir_name = ''
+        self.file_name = file_name
+        self.dir_name = dir_name
         self.dict_cat = self.create_dict_cat()
         self.all_combination = self.create_combination()
         self.list_dict_combination = self.create_list_dict_combination()
@@ -80,7 +80,5 @@ class cls_Tabela_Verdade:
                 count += 1
                 file.write(f"{count:02},{value_join}\n")
 
-    def set_file_name(self,name):
-        self.file_name = f'{name}.csv'
 
 

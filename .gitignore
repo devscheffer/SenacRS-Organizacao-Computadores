@@ -1,1 +1,4 @@
 .vscode
+Tools/__pycache__/__init__.cpython-38.pyc
+Tools/__pycache__/equacao_logica.cpython-38.pyc
+Tools/__pycache__/tabela_verdade.cpython-38.pyc

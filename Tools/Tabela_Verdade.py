@@ -1,18 +1,12 @@
 class cls_Tabela_Verdade:
     def __init__(self,list_cat):
-        print(f'Objeto em andamento')
         self.list_cat = list_cat
         self.file_name = 'tabela verdade.csv'
         self.dir_name = ''
-        print(f'Objeto criado 1: {self.list_cat}')
         self.dict_cat = self.create_dict_cat()
-        print(f'Objeto criado 2: {self.dict_cat}')
         self.all_combination = self.create_combination()
-        print(f'Objeto criado 3: {self.all_combination}')
         self.list_dict_combination = self.create_list_dict_combination()
-        print(f'Objeto criado 4: {self.list_dict_combination}')
         self.logic_output = self.create_logic_output()
-        print(f'Objeto criado 5: {self.logic_output}')
 
 
     def create_dict_cat(self):

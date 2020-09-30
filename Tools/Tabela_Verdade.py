@@ -1,12 +1,11 @@
 class cls_Tabela_Verdade:
     def __init__(self,dir_name,list_cat,file_name):
-        self.list_cat = list_cat
-        self.file_name = file_name
         self.dir_name = dir_name
+        self.file_name = file_name
+        self.list_cat = list_cat
         self.dict_cat = self.create_dict_cat()
         self.all_combination = self.create_combination()
         self.list_dict_combination = self.create_list_dict_combination()
-        self.logic_output = self.create_logic_output()
 
 
     def create_dict_cat(self):
@@ -24,8 +23,6 @@ class cls_Tabela_Verdade:
         all_combination = list(product(*list_iter))
         return all_combination
 
-
-
     def create_list_dict_combination(self):
         list_dict_combination = []
         for i in self.all_combination:
@@ -35,46 +32,20 @@ class cls_Tabela_Verdade:
             list_dict_combination.append(dict_temp)
         return list_dict_combination
 
-
-    def create_logic_output(self):
-        '''
-        Colocar as logicas de saida de acordo com as variaveis de entrada
-        a saida deve ser escrita i['key_saida'] = valor_saida
-        '''
-        keys = self.list_dict_combination[0].keys()
-        print(f'{"="*20}')
-        print(f'keys: {keys}')
-        for i in keys:
-            print(f'i[\'{i}\']')
-        print(f'{"="*20}')
-
-        print(self.list_dict_combination)
-        for i in self.list_dict_combination:
-            total = sum(i.values())
-            vote_d = i['d']
-            if (total == 2 and  vote_d == 1) or (total > 2):
-                i['L'] = 1
-            else:
-                i['L'] = 0
-        return self.list_dict_combination
-
-
     def create_file(self):
         from os import path,remove
 
-        # dirname = path.dirname(__file__)
         path_file_name = f'{self.dir_name}/{self.file_name}'
         if path.exists(path_file_name):
             remove(path_file_name)
 
-
         with open(f'{path_file_name}','w') as file:
-            keys = self.logic_output[0].keys()
+            keys = self.list_dict_combination[0].keys()
             keys_join = ','.join(keys)
             header = f'num,{keys_join}\n'
             file.write(f'{header}')
             count = 0
-            for i in self.logic_output:
+            for i in self.list_dict_combination:
                 temp = map(str,list(i.values()))
                 value_join = ','.join(temp)
                 count += 1

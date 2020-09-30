@@ -84,7 +84,7 @@ class cls_Equacao_Logica:
 
         with open(f'{path_file_name}','w') as file:
             file.write(f"Soma de produto: \n {self.eq_soma_produto}")
-            file.write(f"Produto de soma: \n {self.eq_produto_soma}")
+            file.write(f"\nProduto de soma: \n {self.eq_produto_soma}")
 
 
 

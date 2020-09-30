@@ -32,7 +32,7 @@ class cls_Tabela_Verdade:
             list_dict_combination.append(dict_temp)
         return list_dict_combination
 
-    def create_file(self):
+    def create_file(self,dict_tab_verdade):
         from os import path,remove
 
         path_file_name = f'{self.dir_name}/{self.file_name}'
@@ -40,12 +40,12 @@ class cls_Tabela_Verdade:
             remove(path_file_name)
 
         with open(f'{path_file_name}','w') as file:
-            keys = self.list_dict_combination[0].keys()
+            keys = dict_tab_verdade[0].keys()
             keys_join = ','.join(keys)
             header = f'num,{keys_join}\n'
             file.write(f'{header}')
             count = 0
-            for i in self.list_dict_combination:
+            for i in dict_tab_verdade:
                 temp = map(str,list(i.values()))
                 value_join = ','.join(temp)
                 count += 1

@@ -4,50 +4,39 @@ from os import path
 
 # Input
 dirname = path.dirname(__file__)
-print(f"Path: {dirname}")
-file_name_out = "tab_verdade T1.csv"
-list_cat_in = ["a", "b", "c"]
+TV_file_name_out = "tab_verdade T1.csv"
+list_cat_in = ["A", "B", "C"]
 
 
 # Criacao tabela verdade
 tab_verdade = cls_Tabela_Verdade(
     dirname
     , list_cat_in
-    , file_name_out
+    , TV_file_name_out
     )
-tab_verdade.create_file()
 
+# Lógica das variaveis de saida
+list_dict_tab_verdade = tab_verdade.list_dict_combination
 
+for i in list_dict_tab_verdade:
+    i['D'] = i['E'] = i['F'] = 0
+    total = sum([i['A'],i['B'],i['C']])
+    if total > 0:
+        i['D'] = 1
+    if total == 2:
+        i['E'] = 1
+    if total == 3:
+        i['F'] = 1
 
-# def create_logic_output(self):
-#     '''
-#     Colocar as logicas de saida de acordo com as variaveis de entrada
-#     a saida deve ser escrita i['key_saida'] = valor_saida
-#     '''
-#     keys = self.list_dict_combination[0].keys()
-#     print(f'{"="*20}')
-#     print(f'keys: {keys}')
-#     for i in keys:
-#         print(f'i[\'{i}\']')
-#     print(f'{"="*20}')
+tab_verdade.create_file(list_dict_tab_verdade)
 
-#     print(self.list_dict_combination)
-#     for i in self.list_dict_combination:
-#         total = sum(i.values())
-#         vote_d = i['d']
-#         if (total == 2 and  vote_d == 1) or (total > 2):
-#             i['L'] = 1
-#         else:
-#             i['L'] = 0
-#     return self.list_dict_combination
-# # Criacao equacao logica
-# file_name_eq_logica = "Equacao Logica.csv"
-# n_output = 1
-# file = cls_Equacao_Logica(
-#     dirname
-#     , file_name_out
-#     , file_name_eq_logica
-#     , len(list_cat_in)
-#     , n_output
-#     )
-# file.create_file()
+# Criacao equacao logica
+EL_file_name_out = "Equacao Logica.csv"
+file = cls_Equacao_Logica(
+    dirname
+    , TV_file_name_out
+    , EL_file_name_out
+    , len(list_cat_in)
+    , len(list_dict_tab_verdade[0].keys()) - len(list_cat_in)
+    )
+file.create_file()

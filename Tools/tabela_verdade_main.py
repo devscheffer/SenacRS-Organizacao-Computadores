@@ -1,11 +1,10 @@
-from Tools.tabela_verdade_cls import cls_Tabela_Verdade
-from Tools.equacao_logica import cls_Equacao_Logica
+from tabela_verdade_cls import cls_Tabela_Verdade
 from os import path
 
 # Input
 dirname = path.dirname(__file__)
-TV_file_name_out = "tab_verdade T2.csv"
-list_cat_in = ["A", "B", 'C','D']
+TV_file_name_out = "tab_verdade T1.csv"
+list_cat_in = ["A", "B", "C"]
 
 
 # Criacao tabela verdade
@@ -17,7 +16,7 @@ tab_verdade = cls_Tabela_Verdade (
 
 # Lógica das variaveis de saida
 list_dict_tab_verdade = tab_verdade.list_dict_combination
-tab_verdade.create_file(list_dict_tab_verdade)
+
 for i in list_dict_tab_verdade:
     i['D'] = i['E'] = i['F'] = 0
     total = sum([i['A'],i['B'],i['C']])
@@ -30,14 +29,3 @@ for i in list_dict_tab_verdade:
 
 tab_verdade.create_file(list_dict_tab_verdade)
 
-# TODO Melhorar equacao logica
-# Criacao equacao logica
-EL_file_name_out = "Equacao Logica.csv"
-file = cls_Equacao_Logica(
-    dirname
-    , TV_file_name_out
-    , EL_file_name_out
-    , len(list_cat_in)
-    , len(list_dict_tab_verdade[0].keys()) - len(list_cat_in)
-    )
-file.create_file()
